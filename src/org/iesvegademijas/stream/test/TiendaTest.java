@@ -31,7 +31,6 @@ class TiendaTest {
 	
 			List<Fabricante> listFab = fabHome.findAll();
 		
-			
 			//TODO STREAMS
 			
 		
@@ -117,8 +116,11 @@ class TiendaTest {
 			
 			List<Producto> listProd = prodHome.findAll();
 			
-			//TODO STREAMS
-	
+			List<String> listanombreyprecio = listProd.stream()
+				.map(p -> "Nombre: "+p.getNombre()+"\tPrecio: "+p.getPrecio()+"\n")
+				.collect(toList());
+			
+			System.out.print(listanombreyprecio);
 			
 			prodHome.commitTransaction();
 		}
@@ -143,7 +145,11 @@ class TiendaTest {
 			prodHome.beginTransaction();			
 			List<Producto> listProd = prodHome.findAll();
 			
-			//TODO STREAMS
+			List<String> listanombreyprecio = listProd.stream()
+					.map(p -> "Nombre: "+p.getNombre()+"\tPrecio: "+p.getPrecio()*1.01+"\n")
+					.collect(toList());
+				
+				System.out.print(listanombreyprecio);
 			
 			prodHome.commitTransaction();
 		}
@@ -167,7 +173,11 @@ class TiendaTest {
 		
 			List<Producto> listProd = prodHome.findAll();		
 						
-			//TODO STREAMS
+			List<String> listanombreyprecio = listProd.stream()
+					.map(p -> "Nombre: "+p.getNombre().toUpperCase()+"\tPrecio: "+p.getPrecio()+"\n")
+					.collect(toList());
+				
+				System.out.print(listanombreyprecio);
 		
 			prodHome.commitTransaction();
 		}
@@ -191,7 +201,12 @@ class TiendaTest {
 	
 			List<Fabricante> listFab = fabHome.findAll();
 					
-			//TODO STREAMS
+			List<String> listanombreinicial = listFab.stream()
+					.map(Fabricante :: getNombre)
+					.map( f -> "Nombre: "+f+" "+f.substring(0,2).toUpperCase())
+					.collect(toList());
+			
+			System.out.println(listanombreinicial);
 					
 			fabHome.commitTransaction();
 		}
